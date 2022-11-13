@@ -1,8 +1,8 @@
 import 'package:booking_app/config/config.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton(
+class SecondaryButton extends StatelessWidget {
+  const SecondaryButton(
       {Key? key,
       this.type = PrimaryButtonType.type3,
       required this.onPressed,
@@ -27,15 +27,16 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 24,
       width: width,
-      child: ElevatedButton(
+      child: OutlinedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.ink1,
+        style: OutlinedButton.styleFrom(
+            side: const BorderSide(color: AppColor.ink1),
+            backgroundColor: AppColor.ink6,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))),
         child: Text(
           text,
-          style: AppFont.buttonSmall.copyWith(color: AppColor.ink6),
+          style: AppFont.buttonSmall.copyWith(color: AppColor.ink1),
         ),
       ),
     );
@@ -45,15 +46,16 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 32,
       width: width,
-      child: ElevatedButton(
+      child: OutlinedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.ink1,
+        style: OutlinedButton.styleFrom(
+            side: const BorderSide(color: AppColor.ink1),
+            backgroundColor: AppColor.ink6,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))),
         child: Text(
           text,
-          style: AppFont.buttonMedium.copyWith(color: AppColor.ink6),
+          style: AppFont.buttonMedium.copyWith(color: AppColor.ink1),
         ),
       ),
     );
@@ -63,15 +65,16 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       height: 40,
       width: width,
-      child: ElevatedButton(
+      child: OutlinedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.ink1,
+        style: OutlinedButton.styleFrom(
+            side: const BorderSide(color: AppColor.ink1),
+            backgroundColor: AppColor.ink6,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))),
         child: Text(
           text,
-          style: AppFont.buttonLarge.copyWith(color: AppColor.ink6),
+          style: AppFont.buttonLarge.copyWith(color: AppColor.ink1),
         ),
       ),
     );
