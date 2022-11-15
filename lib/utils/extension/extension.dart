@@ -1,0 +1,1 @@
+export 'package:booking_app/utils/extension/double_extension.dart';

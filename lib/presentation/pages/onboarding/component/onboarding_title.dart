@@ -1,5 +1,5 @@
 import 'package:booking_app/config/theme/app_font.dart';
-import 'package:booking_app/extension/extension.dart';
+import 'package:booking_app/utils/extension/extension.dart';
 import 'package:booking_app/presentation/pages/onboarding/onboarding_cubit.dart';
 import 'package:booking_app/presentation/pages/onboarding/onboarding_state.dart';
 import 'package:flutter/material.dart';

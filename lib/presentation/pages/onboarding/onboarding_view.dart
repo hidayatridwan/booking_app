@@ -1,4 +1,4 @@
-import 'package:booking_app/extension/extension.dart';
+import 'package:booking_app/utils/extension/extension.dart';
 
 import 'component/component.dart';
 import 'package:flutter/material.dart';
