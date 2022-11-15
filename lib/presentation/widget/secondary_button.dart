@@ -5,21 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton(
       {Key? key,
-      this.type = PrimaryButtonType.type3,
+      this.type = SecondaryButtonType.type3,
       required this.onPressed,
       required this.text,
       this.width = 78})
       : super(key: key);
-  final PrimaryButtonType type;
+  final SecondaryButtonType type;
   final VoidCallback onPressed;
   final String text;
   final double width;
 
   @override
   Widget build(BuildContext context) {
-    return type == PrimaryButtonType.type1
+    return type == SecondaryButtonType.type1
         ? _type1()
-        : type == PrimaryButtonType.type2
+        : type == SecondaryButtonType.type2
             ? _type2()
             : _type3();
   }
@@ -82,4 +82,4 @@ class SecondaryButton extends StatelessWidget {
   }
 }
 
-enum PrimaryButtonType { type1, type2, type3 }
+enum SecondaryButtonType { type1, type2, type3 }
