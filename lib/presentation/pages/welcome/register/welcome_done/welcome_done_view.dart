@@ -1,3 +1,4 @@
+import 'package:booking_app/config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,9 @@ class Welcome_donePage extends StatelessWidget {
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<Welcome_doneCubit>(context);
 
-    return Container();
+    return Scaffold(
+      backgroundColor: AppColor.accentGreen,
+    );
   }
 }
 
