@@ -1,6 +1,7 @@
 // import 'package:booking_app/presentation/pages/onboarding/onboarding_view.dart';
 // import 'package:booking_app/presentation/pages/welcome/welcome_view.dart';
 import 'package:booking_app/presentation/pages/welcome/login/login_view.dart';
+import 'package:booking_app/presentation/pages/welcome/register/welcome_done/welcome_done_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(primarySwatch: Colors.amber, fontFamily: 'Poppins'),
-          home: const LoginPage(),
+          home: const WelcomeDonePage(),
         );
       },
     );
