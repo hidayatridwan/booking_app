@@ -5,7 +5,6 @@ import 'package:booking_app/utils/extension/double_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/theme/app_color.dart';
 
 class BottomMenu extends StatelessWidget {
   const BottomMenu({Key? key, required this.cubit}) : super(key: key);
@@ -60,7 +59,8 @@ class BottomMenu extends StatelessWidget {
           4.0.height,
           Text(
             title,
-            style: AppFont.paragraphMedium.copyWith(color: isSelected ? AppColor.ink1 : AppColor.ink3),
+            style: AppFont.paragraphMedium
+                .copyWith(color: isSelected ? AppColor.ink1 : AppColor.ink3),
           )
         ],
       ),

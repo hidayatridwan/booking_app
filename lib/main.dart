@@ -1,4 +1,5 @@
 import 'package:booking_app/presentation/pages/discover/discover_view.dart';
+import 'package:booking_app/presentation/pages/discover/favorite/favorite_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(primarySwatch: Colors.amber, fontFamily: 'Poppins'),
-          home: const DiscoverPage(),
+          home: const FavoritePage(),
         );
       },
     );
