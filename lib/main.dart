@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: ThemeData(primarySwatch: Colors.amber, fontFamily: 'Poppins'),
-          home: const FavoritePage(),
+          home: const DiscoverPage(),
         );
       },
     );
