@@ -10,10 +10,12 @@ class ApiClient extends http.BaseClient {
         'method: ${request.method} \n url: ${request.url}\n headers: ${request.headers}');
     return request.send().then(
       (value) {
+        Logger.root.info(
+            'statusCode: ${value.statusCode} \n headers: ${value.headers}\n request: ${value.request}');
         return value;
       },
     ).catchError((error) async {
-      Logger.root.info(error);
+      Logger.root.info('Error: $error');
       return http.StreamedResponse(
           Stream.fromIterable([error.toString().codeUnits]), 500);
     });
@@ -23,11 +25,11 @@ class ApiClient extends http.BaseClient {
   Future<http.Response> get(Uri url, {Map<String, String>? headers}) {
     return super.get(url, headers: headers).then(
       (value) {
-        Logger.root.info(value.body);
+        Logger.root.info('Response: ${value.body}');
         return value;
       },
     ).catchError((error) {
-      Logger.root.info(error);
+      Logger.root.info('Error: $error');
     });
   }
 
@@ -37,10 +39,10 @@ class ApiClient extends http.BaseClient {
     return super
         .post(url, headers: headers, body: body, encoding: encoding)
         .then((value) {
-      Logger.root.info(value.body);
+      Logger.root.info('Response: ${value.body}');
       return value;
     }).catchError((error) {
-      Logger.root.info(error);
+      Logger.root.info('Error: $error');
     });
   }
 }
