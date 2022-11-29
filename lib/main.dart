@@ -1,7 +1,8 @@
-import 'package:booking_app/presentation/pages/welcome/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logging/logging.dart';
+
+import 'config/router/router.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
@@ -11,6 +12,8 @@ void main() {
   });
   runApp(const MyApp());
 }
+
+final _appRouter = AppRouter();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -22,9 +25,10 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
           theme: ThemeData(primarySwatch: Colors.amber, fontFamily: 'Poppins'),
-          home: const LoginPage(),
+          routerDelegate: _appRouter.delegate(),
+          routeInformationParser: _appRouter.defaultRouteParser(),
         );
       },
     );
