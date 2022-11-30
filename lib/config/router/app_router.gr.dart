@@ -17,21 +17,111 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    WelcomeRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const WelcomePage(),
+      );
+    },
     LoginRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const LoginPage(),
       );
-    }
+    },
+    RegisterRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: RegisterPage(),
+      );
+    },
+    DiscoverRoute.name: (routeData) {
+      final args = routeData.argsAs<DiscoverRouteArgs>(
+          orElse: () => const DiscoverRouteArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: DiscoverPage(key: args.key),
+      );
+    },
+    TripsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TripsPage(),
+      );
+    },
+    DetailRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const DetailPage(),
+      );
+    },
+    FavoriteRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const FavoritePage(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SettingsPage(),
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          LoginRoute.name,
+          '/#redirect',
           path: '/',
-        )
+          redirectTo: '/welcome',
+          fullMatch: true,
+        ),
+        RouteConfig(
+          WelcomeRoute.name,
+          path: '/welcome',
+        ),
+        RouteConfig(
+          LoginRoute.name,
+          path: '/login',
+        ),
+        RouteConfig(
+          RegisterRoute.name,
+          path: '/register',
+        ),
+        RouteConfig(
+          DiscoverRoute.name,
+          path: '/discover',
+        ),
+        RouteConfig(
+          TripsRoute.name,
+          path: '/trips',
+        ),
+        RouteConfig(
+          DetailRoute.name,
+          path: '/detail',
+        ),
+        RouteConfig(
+          FavoriteRoute.name,
+          path: '/favorite',
+        ),
+        RouteConfig(
+          SettingsRoute.name,
+          path: '/settings',
+        ),
       ];
+}
+
+/// generated route for
+/// [WelcomePage]
+class WelcomeRoute extends PageRouteInfo<void> {
+  const WelcomeRoute()
+      : super(
+          WelcomeRoute.name,
+          path: '/welcome',
+        );
+
+  static const String name = 'WelcomeRoute';
 }
 
 /// generated route for
@@ -40,8 +130,92 @@ class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
-          path: '/',
+          path: '/login',
         );
 
   static const String name = 'LoginRoute';
+}
+
+/// generated route for
+/// [RegisterPage]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute()
+      : super(
+          RegisterRoute.name,
+          path: '/register',
+        );
+
+  static const String name = 'RegisterRoute';
+}
+
+/// generated route for
+/// [DiscoverPage]
+class DiscoverRoute extends PageRouteInfo<DiscoverRouteArgs> {
+  DiscoverRoute({Key? key})
+      : super(
+          DiscoverRoute.name,
+          path: '/discover',
+          args: DiscoverRouteArgs(key: key),
+        );
+
+  static const String name = 'DiscoverRoute';
+}
+
+class DiscoverRouteArgs {
+  const DiscoverRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'DiscoverRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [TripsPage]
+class TripsRoute extends PageRouteInfo<void> {
+  const TripsRoute()
+      : super(
+          TripsRoute.name,
+          path: '/trips',
+        );
+
+  static const String name = 'TripsRoute';
+}
+
+/// generated route for
+/// [DetailPage]
+class DetailRoute extends PageRouteInfo<void> {
+  const DetailRoute()
+      : super(
+          DetailRoute.name,
+          path: '/detail',
+        );
+
+  static const String name = 'DetailRoute';
+}
+
+/// generated route for
+/// [FavoritePage]
+class FavoriteRoute extends PageRouteInfo<void> {
+  const FavoriteRoute()
+      : super(
+          FavoriteRoute.name,
+          path: '/favorite',
+        );
+
+  static const String name = 'FavoriteRoute';
+}
+
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<void> {
+  const SettingsRoute()
+      : super(
+          SettingsRoute.name,
+          path: '/settings',
+        );
+
+  static const String name = 'SettingsRoute';
 }
