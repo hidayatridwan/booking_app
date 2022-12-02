@@ -1,11 +1,16 @@
 import 'dart:convert';
 
+import 'package:booking_app/utils/helper/pref_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
 class ApiClient extends http.BaseClient {
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) {
+    if (PrefHelper.instance.token.isNotEmpty) {
+      request.headers
+          .addAll({'Authorization': 'Bearer ${PrefHelper.instance.token}'});
+    }
     Logger.root.info(
         'method: ${request.method} \n url: ${request.url}\n headers: ${request.headers}');
     return request.send().then(
