@@ -1,6 +1,7 @@
 import 'package:booking_app/presentation/pages/discover/trips/component/trips_roomies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logging/logging.dart';
 
 import 'component/trips_matches.dart';
 import 'trips_cubit.dart';
@@ -19,14 +20,20 @@ class TripsPage extends StatelessWidget {
 
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<TripsCubit>(context);
-
-    return Column(
-      children: const [
-        TripsRoomies(),
-        TripsMatches()
-      ],
+    cubit.getTrips();
+    return BlocBuilder<TripsCubit, TripsState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            TripsRoomies(
+              roomies: state.roomies,
+            ),
+            TripsMatches(
+              matches: state.matches,
+            )
+          ],
+        );
+      },
     );
   }
 }
-
-

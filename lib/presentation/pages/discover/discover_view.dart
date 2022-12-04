@@ -10,14 +10,10 @@ import 'discover_cubit.dart';
 import 'discover_state.dart';
 
 class DiscoverPage extends StatelessWidget {
-  DiscoverPage({super.key});
-
-  final ApiClient apiClient = ApiClient();
+  const DiscoverPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    apiClient.get(Uri.parse(
-        'https://0a7062fd-49ee-4319-84ef-d1b8cedfd5b0.mock.pstmn.io/api/v1/trips'));
     return BlocProvider(
       create: (BuildContext context) => DiscoverCubit(),
       child: Builder(builder: (context) => _buildPage(context)),

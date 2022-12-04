@@ -11,12 +11,12 @@ class ApiClient extends http.BaseClient {
       request.headers
           .addAll({'Authorization': 'Bearer ${PrefHelper.instance.token}'});
     }
-    Logger.root.info(
-        'method: ${request.method} \n url: ${request.url}\n headers: ${request.headers}');
     return request.send().then(
       (value) {
         Logger.root.info(
             'statusCode: ${value.statusCode} \n headers: ${value.headers}\n request: ${value.request}');
+        Logger.root.info(
+            'method: ${request.method} \n url: ${request.url}\n headers: ${request.headers}');
         return value;
       },
     ).catchError((error) async {

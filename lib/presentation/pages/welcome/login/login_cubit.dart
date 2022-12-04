@@ -2,8 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:booking_app/config/config.dart';
 import 'package:booking_app/domain/controller/auth_controller.dart';
 import 'package:booking_app/utils/helper/helper.dart';
+import 'package:get_it/get_it.dart';
 import 'package:logging/logging.dart';
 
+import '../../../../config/router/app_router.gr.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> implements HttpState {
@@ -16,6 +18,10 @@ class LoginCubit extends Cubit<LoginState> implements HttpState {
     PrefHelper.instance.saveToken(response.result?.login?.token ?? '');
 
     Logger.root.info('My Token : ${PrefHelper.instance.token}');
+
+    if (response.result?.login?.token != null) {
+      GetIt.I<AppRouter>().replace(const DiscoverRoute());
+    }
   }
 
   @override
@@ -26,15 +32,18 @@ class LoginCubit extends Cubit<LoginState> implements HttpState {
   @override
   void onErrorRequest(String url, String method) {
     Logger.root.info('onErrorRequest $url $method');
+    emit(state.clone()..status = HttpStateStatus.error);
   }
 
   @override
   void onStartRequest(String url, String method) {
     Logger.root.info('onStartRequest $url $method');
+    emit(state.clone()..status = HttpStateStatus.loading);
   }
 
   @override
   void onSuccessRequest(String url, String method) {
     Logger.root.info('onSuccessRequest $url $method');
+    emit(state.clone()..status = HttpStateStatus.success);
   }
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:booking_app/config/config.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../data/model/trip/trip.dart';
+import '../trips_cubit.dart';
 
 class TripsMatches extends StatelessWidget {
-  const TripsMatches({Key? key}) : super(key: key);
+  const TripsMatches({Key? key, required this.matches}) : super(key: key);
+  final List<Trip> matches;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +30,27 @@ class TripsMatches extends StatelessWidget {
   }
 
   Widget _matchesList(BuildContext context) {
+    final cubit = BlocProvider.of<TripsCubit>(context);
+
     return Expanded(
-        child: ListView.builder(
-      itemBuilder: (context, index) {
-        return _matchesItem(context);
-      },
-      itemCount: 3,
-      scrollDirection: Axis.horizontal,
-    ));
+        child: cubit.state.status == HttpStateStatus.loading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : cubit.state.status == HttpStateStatus.error
+                ? const Center(
+                    child: Text('Error'),
+                  )
+                : ListView.builder(
+                    itemBuilder: (context, index) {
+                      return _matchesItem(context, matches[index]);
+                    },
+                    itemCount: matches.length,
+                    scrollDirection: Axis.horizontal,
+                  ));
   }
 
-  Widget _matchesItem(BuildContext context) {
+  Widget _matchesItem(BuildContext context, Trip trip) {
     return Container(
       margin: EdgeInsets.only(
           left: AppDimen.h16, top: AppDimen.h24, bottom: AppDimen.h16),
@@ -51,12 +66,12 @@ class TripsMatches extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Gary',
+                trip.name ?? '',
                 style:
                     AppFont.paragraphLargeBold.copyWith(color: AppColor.ink2),
               ),
               Text(
-                'IDR500',
+                trip.price ?? '',
                 style: AppFont.paragraphSmall.copyWith(color: AppColor.ink2),
               )
             ],

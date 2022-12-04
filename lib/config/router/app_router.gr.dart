@@ -10,111 +10,161 @@
 //
 // ignore_for_file: type=lint
 
-part of 'app_router.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:auto_route/auto_route.dart' as _i10;
+import 'package:flutter/material.dart' as _i11;
 
-class _$AppRouter extends RootStackRouter {
-  _$AppRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
+import '../../presentation/pages/discover/discover_view.dart' as _i5;
+import '../../presentation/pages/discover/favorite/favorite_view.dart' as _i8;
+import '../../presentation/pages/discover/settings/settings_view.dart' as _i9;
+import '../../presentation/pages/discover/trips/detail/detail_view.dart' as _i7;
+import '../../presentation/pages/discover/trips/trips_view.dart' as _i6;
+import '../../presentation/pages/onboarding/onboarding_view.dart' as _i1;
+import '../../presentation/pages/welcome/login/login_view.dart' as _i3;
+import '../../presentation/pages/welcome/register/register_view.dart' as _i4;
+import '../../presentation/pages/welcome/welcome_view.dart' as _i2;
+import 'middleware/auth_guard.dart' as _i13;
+import 'middleware/first_install_guard.dart' as _i12;
+
+class AppRouter extends _i10.RootStackRouter {
+  AppRouter({
+    _i11.GlobalKey<_i11.NavigatorState>? navigatorKey,
+    required this.firstInstallGuard,
+    required this.authGuard,
+  }) : super(navigatorKey);
+
+  final _i12.FirstInstallGuard firstInstallGuard;
+
+  final _i13.AuthGuard authGuard;
 
   @override
-  final Map<String, PageFactory> pagesMap = {
-    WelcomeRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+  final Map<String, _i10.PageFactory> pagesMap = {
+    OnboardingRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const WelcomePage(),
+        child: const _i1.OnboardingPage(),
+      );
+    },
+    WelcomeRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.WelcomePage(),
       );
     },
     LoginRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const LoginPage(),
+        child: const _i3.LoginPage(),
       );
     },
     RegisterRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: RegisterPage(),
+        child: _i4.RegisterPage(),
       );
     },
     DiscoverRoute.name: (routeData) {
-      final args = routeData.argsAs<DiscoverRouteArgs>(
-          orElse: () => const DiscoverRouteArgs());
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: DiscoverPage(key: args.key),
+        child: const _i5.DiscoverPage(),
       );
     },
     TripsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const TripsPage(),
+        child: const _i6.TripsPage(),
       );
     },
     DetailRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const DetailPage(),
+        child: const _i7.DetailPage(),
       );
     },
     FavoriteRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const FavoritePage(),
+        child: const _i8.FavoritePage(),
       );
     },
     SettingsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
+      return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SettingsPage(),
+        child: const _i9.SettingsPage(),
       );
     },
   };
 
   @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
+  List<_i10.RouteConfig> get routes => [
+        _i10.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/welcome',
+          redirectTo: '/onboarding',
           fullMatch: true,
         ),
-        RouteConfig(
+        _i10.RouteConfig(
+          OnboardingRoute.name,
+          path: '/onboarding',
+          guards: [firstInstallGuard],
+        ),
+        _i10.RouteConfig(
           WelcomeRoute.name,
           path: '/welcome',
+          guards: [authGuard],
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           LoginRoute.name,
           path: '/login',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           RegisterRoute.name,
           path: '/register',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           DiscoverRoute.name,
           path: '/discover',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           TripsRoute.name,
           path: '/trips',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           DetailRoute.name,
           path: '/detail',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           FavoriteRoute.name,
           path: '/favorite',
         ),
-        RouteConfig(
+        _i10.RouteConfig(
           SettingsRoute.name,
           path: '/settings',
+        ),
+        _i10.RouteConfig(
+          '*#redirect',
+          path: '*',
+          redirectTo: '/discover',
+          fullMatch: true,
         ),
       ];
 }
 
 /// generated route for
-/// [WelcomePage]
-class WelcomeRoute extends PageRouteInfo<void> {
+/// [_i1.OnboardingPage]
+class OnboardingRoute extends _i10.PageRouteInfo<void> {
+  const OnboardingRoute()
+      : super(
+          OnboardingRoute.name,
+          path: '/onboarding',
+        );
+
+  static const String name = 'OnboardingRoute';
+}
+
+/// generated route for
+/// [_i2.WelcomePage]
+class WelcomeRoute extends _i10.PageRouteInfo<void> {
   const WelcomeRoute()
       : super(
           WelcomeRoute.name,
@@ -125,8 +175,8 @@ class WelcomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginPage]
-class LoginRoute extends PageRouteInfo<void> {
+/// [_i3.LoginPage]
+class LoginRoute extends _i10.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
@@ -137,8 +187,8 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [RegisterPage]
-class RegisterRoute extends PageRouteInfo<void> {
+/// [_i4.RegisterPage]
+class RegisterRoute extends _i10.PageRouteInfo<void> {
   const RegisterRoute()
       : super(
           RegisterRoute.name,
@@ -149,32 +199,20 @@ class RegisterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DiscoverPage]
-class DiscoverRoute extends PageRouteInfo<DiscoverRouteArgs> {
-  DiscoverRoute({Key? key})
+/// [_i5.DiscoverPage]
+class DiscoverRoute extends _i10.PageRouteInfo<void> {
+  const DiscoverRoute()
       : super(
           DiscoverRoute.name,
           path: '/discover',
-          args: DiscoverRouteArgs(key: key),
         );
 
   static const String name = 'DiscoverRoute';
 }
 
-class DiscoverRouteArgs {
-  const DiscoverRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'DiscoverRouteArgs{key: $key}';
-  }
-}
-
 /// generated route for
-/// [TripsPage]
-class TripsRoute extends PageRouteInfo<void> {
+/// [_i6.TripsPage]
+class TripsRoute extends _i10.PageRouteInfo<void> {
   const TripsRoute()
       : super(
           TripsRoute.name,
@@ -185,8 +223,8 @@ class TripsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DetailPage]
-class DetailRoute extends PageRouteInfo<void> {
+/// [_i7.DetailPage]
+class DetailRoute extends _i10.PageRouteInfo<void> {
   const DetailRoute()
       : super(
           DetailRoute.name,
@@ -197,8 +235,8 @@ class DetailRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [FavoritePage]
-class FavoriteRoute extends PageRouteInfo<void> {
+/// [_i8.FavoritePage]
+class FavoriteRoute extends _i10.PageRouteInfo<void> {
   const FavoriteRoute()
       : super(
           FavoriteRoute.name,
@@ -209,8 +247,8 @@ class FavoriteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SettingsPage]
-class SettingsRoute extends PageRouteInfo<void> {
+/// [_i9.SettingsPage]
+class SettingsRoute extends _i10.PageRouteInfo<void> {
   const SettingsRoute()
       : super(
           SettingsRoute.name,

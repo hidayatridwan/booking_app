@@ -16,7 +16,7 @@ class OnboardingButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SecondaryButton(
-          onPressed: () {},
+          onPressed: cubit.skip,
           text: 'Skip',
           width: 145,
         ),

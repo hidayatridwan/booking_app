@@ -1,15 +1,20 @@
 import 'package:booking_app/config/config.dart';
+import 'package:booking_app/data/model/trip/trip.dart';
 import 'package:booking_app/utils/extension/double_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../trips_cubit.dart';
 
 class TripsRoomies extends StatelessWidget {
-  const TripsRoomies({Key? key}) : super(key: key);
+  const TripsRoomies({Key? key, required this.roomies}) : super(key: key);
+  final List<Trip> roomies;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
-        children: [_header(), _roomiesList()],
+        children: [_header(), _roomiesList(context)],
       ),
     );
   }
@@ -39,17 +44,27 @@ class TripsRoomies extends StatelessWidget {
     );
   }
 
-  Widget _roomiesList() {
+  Widget _roomiesList(BuildContext context) {
+    final cubit = BlocProvider.of<TripsCubit>(context);
+
     return Expanded(
-        child: ListView.builder(
-      itemBuilder: (context, index) {
-        return _roomiesItem();
-      },
-      itemCount: 3,
-    ));
+        child: cubit.state.status == HttpStateStatus.loading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : cubit.state.status == HttpStateStatus.error
+                ? const Center(
+                    child: Text('Error'),
+                  )
+                : ListView.builder(
+                    itemBuilder: (context, index) {
+                      return _roomiesItem(roomies[index]);
+                    },
+                    itemCount: roomies.length,
+                  ));
   }
 
-  Widget _roomiesItem() {
+  Widget _roomiesItem(Trip trip) {
     return Container(
       height: 72.0,
       margin: EdgeInsets.only(
@@ -76,11 +91,11 @@ class TripsRoomies extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Courtney Henry',
+                trip.name ?? '',
                 style: AppFont.paragraphMediumBold,
               ),
               Text(
-                'Viet Nam',
+                trip.location ?? '',
                 style: AppFont.paragraphSmall.copyWith(color: AppColor.ink2),
               )
             ],

@@ -14,7 +14,7 @@ class OnboardingImage extends StatelessWidget {
         child: PageView.builder(
       itemBuilder: (context, index) => Image.asset(state[index].image),
       itemCount: state.length,
-          onPageChanged: cubit.goTo,
+          onPageChanged: cubit.swiping,
     ));
   }
 }

@@ -7,3 +7,5 @@ abstract class HttpState {
 
   void onSuccessRequest(String url, String method);
 }
+
+enum HttpStateStatus { initial, idle, loading, success, error }

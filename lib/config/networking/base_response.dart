@@ -77,11 +77,10 @@ class Result {
           roomies: roomies ?? this.roomies,
           matches: matches ?? this.matches);
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (login != null) {
-      map['login'] = login?.toJson();
-    }
-    return map;
-  }
+  Map<String, dynamic> toJson() => {
+        'login': login,
+        'trip': trip?.toJson(),
+        'roomies': roomies?.map((e) => e.toJson()).toList(),
+        'matches': matches?.map((e) => e.toJson()).toList()
+      };
 }

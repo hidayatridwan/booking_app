@@ -1,5 +1,6 @@
 class DiscoverState {
-  int selectedIndex=0;
+  int selectedIndex = 0;
+
   DiscoverState init() {
     return DiscoverState();
   }
